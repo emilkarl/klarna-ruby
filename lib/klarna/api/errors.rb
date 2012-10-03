@@ -127,7 +127,7 @@ module Klarna
 
         def initialize(error_code, error_key)
           localized_error_message = ::Klarna::API::Errors.error_message(error_key)
-          message = ::Klarna.mode == :test ? "#{error_key} (#{[error_code, ERROR_CODES[error_code]].compact.join(' - ')})" : localized_error_message
+          message = ::Klarna.mode == :test ? "#{error_key} (#{[error_code, ERROR_CODES[error_code]].compact.join(' - ')})" : "#{localized_error_message} (#{error_code})"
           ::Klarna.log message, :error
           super(error_code, message)
         end
